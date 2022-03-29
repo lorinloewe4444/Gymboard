@@ -43,7 +43,7 @@ sql = "CREATE TABLE user(" \
       "id INTEGER NOT NULL UNIQUE, " \
       "eMail TEXT NOT NULL UNIQUE, " \
       "nickName TEXT NOT NULL UNIQUE, " \
-      "link TEXT UNIQUE, " \
+      "link TEXT, " \
       "lTime INTEGER, " \
       "status INTEGER NOT NULL, " \
       "role	INTEGER NOT NULL, " \
