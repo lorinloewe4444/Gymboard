@@ -7,5 +7,6 @@ sql = "SELECT * FROM users"
 cursor.execute(sql)
 for dsatz in cursor:
     print(dsatz)
+#print userss
 
 connection.close()
