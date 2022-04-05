@@ -8,6 +8,4 @@ cur.execute(sql)
 for dsatz in cursor:
     print(dsatz)
 
-# Matthias
-
 con.close()
