@@ -104,7 +104,7 @@ sql = "INSERT INTO likes(id_User, id_Document) VALUES(2, 2)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO likes(id_User, id_Document, id_Comment) VALUES(3, 3, 3)"
+sql = "INSERT INTO likes(id_User, id_Comment) VALUES(3, 3)"
 cursor.execute(sql)
 connection.commit()
 
