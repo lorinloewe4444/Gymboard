@@ -9,5 +9,6 @@ for dsatz in cursor:
     print(dsatz)
 
 
+#Alex
 
 con.close()
