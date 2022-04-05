@@ -7,6 +7,7 @@ sql = "SELECT * FROM users"
 cur.execute(sql)
 for dsatz in cursor:
     print(dsatz)
-#print userss
+
+
 
 con.close()
