@@ -4,7 +4,7 @@ import sqlite3
 con = sqlite3.connect('GymBoard.db')
 cur = con.cursor()
 
-sql = "CREATE TABLE comment(" \
+sql = "CREATE TABLE comments(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
       "id_Comment INTEGER, " \
       "id_Document INTEGER NOT NULL, " \
@@ -13,7 +13,7 @@ sql = "CREATE TABLE comment(" \
       "datum TEXT NOT NULL)"
 cur.execute(sql)
 
-sql = "CREATE TABLE document(" \
+sql = "CREATE TABLE documents(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
       "id_User INTEGER NOT NULL, " \
       "name TEXT NOT NULL, " \
@@ -21,26 +21,26 @@ sql = "CREATE TABLE document(" \
       "datum TEXT NOT NULL)"
 cur.execute(sql)
 
-sql = "CREATE TABLE like(" \
+sql = "CREATE TABLE likes(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
       "id_User INTEGER NOT NULL, " \
       "id_Document INTEGER, " \
       "id_Comment INTEGER)"
 cur.execute(sql)
 
-sql = "CREATE TABLE tag(" \
+sql = "CREATE TABLE tags(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
       "name TEXT NOT NULL UNIQUE, " \
       "level INTEGER)"
 cur.execute(sql)
 
-sql = "CREATE TABLE tag_Document(" \
+sql = "CREATE TABLE tags_Documents(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
       "id_Tag INTEGER NOT NULL, " \
       "id_Document INTEGER NOT NULL)"
 cur.execute(sql)
 
-sql = "CREATE TABLE user(" \
+sql = "CREATE TABLE users(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
       "eMail TEXT NOT NULL UNIQUE, " \
       "nickName TEXT NOT NULL UNIQUE, " \
