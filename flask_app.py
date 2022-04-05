@@ -1,4 +1,4 @@
-import datetime
+import datetime, en_modul
 
 from flask import Flask, make_response, request
 
@@ -42,8 +42,14 @@ def getcookie():
 
 @app.route('/delcookie')
 def delcookie():
-    pass
+    resp = make_response("del success")
+    # Delete cookie
+    resp.delete_cookie("Name")
+    return resp
 
+@app.route('/animals')
+def animals():
+    return en_modul.get_animals(77)
 
 if __name__ == '__main__':
     app.run(debug=True)
