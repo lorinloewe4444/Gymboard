@@ -34,15 +34,15 @@ def form():
 
 @app.route('/setcookie', methods=['POST', 'GET'])
 def setcookie():
-   if "Name" in request.cookies:
+  if "Name" in request.cookies:
      if request.method == 'POST':
         name_cookie=request.form['vorname']+"  "+request.form['name']
         resp = make_response("Erfolgreich angemeldet. Hier kannst du deine Angaben überprüfen oder dich abmelden:<br><a href='/getcookie'>Überprüfen&Abmelden</a><br>")
         resp.set_cookie('Name',name_cookie,expires=datetime.datetime.now() + datetime.timedelta(days=1))
         return resp
-   else:
-     resp= make_response('<script>window. location. href="127.0.0.1:5000";</script>')
-     return resp
+  else:
+    resp= make_response('<script>window. location. href="/";</script>')
+    return resp
   
 
 
