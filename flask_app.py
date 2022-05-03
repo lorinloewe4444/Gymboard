@@ -41,7 +41,7 @@ def setcookie():
         resp.set_cookie('Name',name_cookie,expires=datetime.datetime.now() + datetime.timedelta(days=1))
         return resp
    else:
-     resp= make_response("<script>window. location. href="127.0.0.1:5000";</script>")
+     resp= make_response('<script>window. location. href="127.0.0.1:5000";</script>')
      resp
   
 
