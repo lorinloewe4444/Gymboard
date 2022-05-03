@@ -37,7 +37,7 @@ def form():
    def setcookie():
      if request.method == 'POST':
         name_cookie=request.form['vorname']+"  "+request.form['name']
-        resp = make_response("erfolgreich angemeldet. Hier kannst du deine Angaben überprüfen oder dich abmelden:<br><a href='/getcookie'>Überprüfen&Abmelden</a><br>")
+        resp = make_response("Erfolgreich angemeldet. Hier kannst du deine Angaben überprüfen oder dich abmelden:<br><a href='/getcookie'>Überprüfen&Abmelden</a><br>")
         resp.set_cookie('Name',name_cookie,expires=datetime.datetime.now() + datetime.timedelta(days=1))
         return resp
  else:
