@@ -36,18 +36,18 @@ def form():
 def setcookie():
     if request.method == 'POST':
         name_cookie=request.form['vorname']+"  "+request.form['name']
-        resp = make_response("The Cookie has been Set<br><a href='/getcookie'>getcookie</a><br>")
+        resp = make_response("erfolgreich angemeldet. Hier kannst du deine Angaben überprüfen oder dich abmelden:<br><a href='/getcookie'>Überprüfen&Abmelden</a><br>")
         resp.set_cookie('Name',name_cookie,expires=datetime.datetime.now() + datetime.timedelta(days=1))
         return resp
 
 @app.route('/getcookie')
 def getcookie():
     name = request.cookies.get('Name')
-    return "Name : "+name+ "<br><a href='/delcookie '>delcookie</a><br>"
+    return "Name : "+name+ "<br><a href='/delcookie '>ABMELDEN</a><br>"
 
 @app.route('/delcookie')
 def delcookie():
-    resp=make_response("del success")
+    resp=make_response("erfolgreich abgemeldet")
     resp.delete_cookie('Name')
     return resp
 
