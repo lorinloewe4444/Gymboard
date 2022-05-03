@@ -43,7 +43,7 @@ def getcookie():
 @app.route('/delcookie')
 def delcookie():
     resp=make_response("del success")
-    resp.delete_cookie('', domain="")
+    resp.delete_cookie('Name')
     return resp
 
 if __name__ == '__main__':
