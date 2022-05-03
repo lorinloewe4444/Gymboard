@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, time
 
 
 
@@ -14,14 +14,14 @@ def modell():
 
 
 
-"""# Count Likes from a specific Document
+# Count Likes from a specific Document
 def countLikesDoc(id_Document):
     likes = 0
 
     con = sqlite3.connect('GymBoard.db')
     cur = con.cursor()
 
-    cur.execute("SELECT id FROM likes where id_Document = (?)" , (id_Document))
+    cur.execute("SELECT id FROM likes WHERE id_Document = %d;" % (id_Document))
     for dsatz in cur:
         likes += 1
     return likes
@@ -34,11 +34,11 @@ def countLikesCom(id_Comment):
     con = sqlite3.connect('GymBoard.db')
     cur = con.cursor()
 
-    cur.execute("SELECT id FROM likes where id_Document = (?)" , (id_Comment))
+    cur.execute("SELECT id FROM likes WHERE id_Document = %d;" % (id_Comment))
     for dsatz in cur:
         likes += 1
     return likes
-    con.close()"""
+    con.close()
 
 # Returns a list of the comments from a specific document
 def commentsDocument(document):
@@ -47,6 +47,14 @@ def commentsDocument(document):
     con = sqlite3.connect('GymBoard.db')
     cur = con.cursor()
 
-    cur.execute("SELECT id FROM likes where id_Document = (?)" , (id_Comment))
+    cur.execute("SELECT * FROM comments WHERE id_Document = %d AND id_Comment IS NULL ORDER BY datum DESC;" % (document))
+    for dsatz in cur:
+        comments.append(dsatz)
 
-print(countLikesCom('3'))
+    return comments
+    con.close()
+
+now = int( time.time() )
+print( now )
+
+print(commentsDocument(2))
