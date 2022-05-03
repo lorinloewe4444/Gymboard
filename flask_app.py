@@ -38,7 +38,7 @@ def setcookie():
 @app.route('/getcookie')
 def getcookie():
     name = request.cookies.get('Name')
-    return "Name : "+name
+    return "Name : "+name+ "<br><a href='/delcookie '>delcookie</a><br>"
 
 @app.route('/delcookie')
 def delcookie():
