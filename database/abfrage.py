@@ -14,7 +14,7 @@ def modell():
 
 
 
-# Count Likes from a specific Document
+"""# Count Likes from a specific Document
 def countLikesDoc(id_Document):
     likes = 0
 
@@ -38,10 +38,15 @@ def countLikesCom(id_Comment):
     for dsatz in cur:
         likes += 1
     return likes
-    con.close()
+    con.close()"""
 
 # Returns a list of the comments from a specific document
 def commentsDocument(document):
-    
+    comments = []
+
+    con = sqlite3.connect('GymBoard.db')
+    cur = con.cursor()
+
+    cur.execute("SELECT id FROM likes where id_Document = (?)" , (id_Comment))
 
 print(countLikesCom('3'))
