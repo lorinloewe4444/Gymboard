@@ -26,7 +26,7 @@ my_form="""
 @app.route("/")
   def anmelden():
       anmelden="null"
-      return "Willkommen bei Gymboard! Bitte melde dich doch an. <br><a href='/getcookie'></a><br>"
+      return "Willkommen bei Gymboard! Bitte melde dich doch an.<br><a href='/getcookie'></a><br>"
 
 @app.route('/form')
 def form():
