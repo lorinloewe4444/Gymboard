@@ -42,7 +42,7 @@ def setcookie():
         return resp
    else:
      resp= make_response('<script>window. location. href="127.0.0.1:5000";</script>')
-     resp
+     return resp
   
 
 
