@@ -10,7 +10,7 @@ sql = "CREATE TABLE comments(" \
       "id_Document INTEGER NOT NULL, " \
       "id_User INTEGER NOT NULL, " \
       "comment TEXT NOT NULL, " \
-      "datum TEXT NOT NULL)"
+      "datum INTEGER NOT NULL)"
 cur.execute(sql)
 
 sql = "CREATE TABLE documents(" \
@@ -18,7 +18,7 @@ sql = "CREATE TABLE documents(" \
       "id_User INTEGER NOT NULL, " \
       "name TEXT NOT NULL, " \
       "path TEXT NOT NULL UNIQUE, " \
-      "datum TEXT NOT NULL)"
+      "datum INTEGER NOT NULL)"
 cur.execute(sql)
 
 sql = "CREATE TABLE likes(" \
@@ -48,7 +48,7 @@ sql = "CREATE TABLE users(" \
       "lTime INTEGER, " \
       "status INTEGER NOT NULL, " \
       "role	INTEGER NOT NULL, " \
-      "datum TEXT NOT NULL)"
+      "datum INTEGER NOT NULL)"  #Unix Timestamp        datetime(time-value, 'unixepoch')
 cur.execute(sql)
 
 con.close()
