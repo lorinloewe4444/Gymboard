@@ -23,10 +23,10 @@ my_form="""
         </html>
            """
 
-@app.route("/")
-  def anmelden():
-      resp=make_response("Willkommen bei Gymboard! Bitte melde dich doch an.<br><a href='/getcookie'></a><br>")
-      return resp
+@app.route('/')
+def anmelden():
+    resp=make_response("Willkommen bei Gymboard! Bitte melde dich doch an.<br><a href='/getcookie'>getcookie</a><br>")
+    return resp
 
 @app.route('/form')
 def form():
