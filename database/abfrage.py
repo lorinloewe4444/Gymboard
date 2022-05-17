@@ -4,6 +4,8 @@ from datetime import datetime
 def connection():
     return sqlite3.connect('Gymboard.db')
 
+
+
 def modell():
     con = connection()
     cur = con.cursor()
@@ -60,8 +62,16 @@ def commentsDocument(document):
 
 def commentsComment(comment):
     comments = []
-
     con = connection()
+    cur = con.cursor()
+
+    cur.execute("SELECT * FROM comments WHERE id_Comment = %d ORDER BY datum DESC;" % (comment))
+    for dsatz in cur:
+        cdsatz = (list(dsatz))
+        comments.append(cdsatz)
+
+    return comments
+    con.close()
 
 
-print(commentsDocument(2))
+print(commentsComment(2))
