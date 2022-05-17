@@ -13,7 +13,7 @@ my_form="""
 
             <h1>Formular f&uuml;r Namenseingabe</h1>
 
-              <form action="bimformgsi" method="post">
+              <form action="bimformgsi" method="POST">
                 <p>Vorname:<br><input name="vorname" type="text" size="30" maxlength="3000"></p>
                 <p>Zuname:<br><input name="name" type="text" size="30" maxlength="40"></p>
                 <p><input type="submit" value=" Absenden "> <input type="reset" value=" Abbrechen"></p>
