@@ -63,8 +63,12 @@ def setcookie():
     if request.method == 'POST':
         page = request.form['page']
         email_cookie=request.form['email']
+        angemeldet_bleiben = request.form.getlist('permanent')
         resp = make_response('<script>window. location. href="'+page+'";</script>')
-        resp.set_cookie('email',email_cookie,expires=datetime.datetime.now() + datetime.timedelta(days=1))
+        if len(angemeldet_bleiben) >0:
+            resp.set_cookie('email',email_cookie,expires=datetime.datetime.now() + datetime.timedelta(days=1))
+        else:
+            resp.set_cookie('email',email_cookie)
         return resp
 
 @app.route('/delcookie', methods=['GET'])
