@@ -34,15 +34,23 @@ cursor.execute(sql)
 connection.commit()
 
 # -- tags
-sql = "INSERT INTO tags(name, level) VALUES('gym1', 0)"
+sql = "INSERT INTO tags(name, level) VALUES('gym1', 1)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, level) VALUES('gym2', 0)"
+sql = "INSERT INTO tags(name, level) VALUES('gym2', 1)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, level) VALUES('Chemie', 1)"
+sql = "INSERT INTO tags(name, level) VALUES('Chemie', 0)"
+cursor.execute(sql)
+connection.commit()
+
+sql = "INSERT INTO tags(name, level) VALUES('Informatik', 0)"
+cursor.execute(sql)
+connection.commit()
+
+sql = "INSERT INTO tags(name, level) VALUES('Deutsch', 0)"
 cursor.execute(sql)
 connection.commit()
 
