@@ -31,7 +31,7 @@ cur.execute(sql)
 sql = "CREATE TABLE tags(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
       "name TEXT NOT NULL UNIQUE, " \
-      "parent INTEGER)"
+      "id_parent INTEGER)"
 cur.execute(sql)
 
 sql = "CREATE TABLE tags_Documents(" \
