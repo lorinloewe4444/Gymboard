@@ -34,29 +34,30 @@ cursor.execute(sql)
 connection.commit()
 
 # -- tags
-sql = "INSERT INTO tags(name, level) VALUES('gym1', 1)"
+sql = "INSERT INTO tags(name, parent) VALUES('Chemie')"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, level) VALUES('gym2', 1)"
+sql = "INSERT INTO tags(name, parent) VALUES('Informatik')"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, level) VALUES('Chemie', 0)"
+sql = "INSERT INTO tags(name, parent) VALUES('Deutsch')"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, level) VALUES('Informatik', 0)"
+sql = "INSERT INTO tags(name, parent) VALUES('gym1', 1)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, level) VALUES('Deutsch', 0)"
+sql = "INSERT INTO tags(name, parent) VALUES('gym2', 1)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, level) VALUES('Juchler', 2)"
+sql = "INSERT INTO tags(name, parent) VALUES('Juchler', 2)"
 cursor.execute(sql)
 connection.commit()
+
 
 # -- tags_Document
 sql = "INSERT INTO tags_Documents(id_Document, id_Tag) VALUES(1, 1)"
