@@ -73,5 +73,36 @@ def commentsComment(comment):
     return comments
     con.close()
 
+def searchDocument(tag):
+    con = connection()
+    cur = con.cursor()
+    documents = []
+    #sql = """SELECT documents.name FROM tags_Documents
+            #JOIN documents
+            #ON tags_Documents.id_Document = documents.id
+            #WHERE tags_Documents.id_Tag = 1;"""  #SELECT documents.* geht aber documents.name nicht!
+    sql = """SELECT documents.name FROM documents
+             JOIN tags_Documents
+             ON documents.id = tags_Documents.id_Document"""
 
-print(commentsComment(2))
+    cur.execute(sql)
+    for dsatz in cur:
+        documents.append(dsatz)
+    con.close()
+    return documents
+
+
+def tags(level):
+    con = connection()
+    cur = con.cursor()
+    tags = []
+    cur.execute("SELECT name FROM tags WHERE level = %d" % (level))
+    for dsatz in cur:
+        tags.append(list(dsatz))
+    con.close()
+    return tags
+
+
+
+
+print(tags(0))
