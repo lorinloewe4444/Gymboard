@@ -18,7 +18,8 @@ sql = "CREATE TABLE documents(" \
       "id_User INTEGER NOT NULL, " \
       "name TEXT NOT NULL, " \
       "path TEXT NOT NULL UNIQUE, " \
-      "datum INTEGER NOT NULL)"
+      "datum INTEGER NOT NULL, " \
+      "tags_id INTEGER)"
 cur.execute(sql)
 
 sql = "CREATE TABLE likes(" \
@@ -30,14 +31,8 @@ cur.execute(sql)
 
 sql = "CREATE TABLE tags(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
-      "name TEXT NOT NULL UNIQUE, " \
-      "id_parent INTEGER)"
-cur.execute(sql)
-
-sql = "CREATE TABLE tags_Documents(" \
-      "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
-      "id_Tag INTEGER NOT NULL, " \
-      "id_Document INTEGER NOT NULL)"
+      "name TEXT NOT NULL, " \
+      "parent_id INTEGER)"
 cur.execute(sql)
 
 sql = "CREATE TABLE users(" \
