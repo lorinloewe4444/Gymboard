@@ -34,5 +34,3 @@ def documents(id_Tags):
         documents.append(list(dsatz))
     con.close()
     return documents
-
-print(documents(int(input())))
