@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Anmeldung</title>
+  </head>
+  <body>
+
+    <h3>Anmelden mit E-Mail des Gymnasiums Interlaken</h3>
+
+      <form action="/setcookie" method="POST">
+        <p>Mail Gymnasium Interlaken:<br><input name="email" type="text" size="30" maxlength="3000">
+          <input type="checkbox" name="permanent" value="checked" checked>
+          <label for="permanent"> angemeldet bleiben</label><br>
+        </p>
+         <input type="hidden" id="page" name="page" value="{{page}}">
+        <p><input type="submit" value=" Absenden "> <input type="reset" value=" Abbrechen"></p>
+      </form>
+
+  </body>
+</html>

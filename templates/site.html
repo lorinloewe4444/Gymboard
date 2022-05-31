@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{page}}</title>
+  </head>
+  <body>
+    {% if email != "0" %}
+      E-Mail: {{ email }} <a href='/delcookie?page={{ page }} '>abmelden</a><br><br>
+    {% else %}
+      Sie sind nicht angemeldet. <a href='/form?page={{ page }}'>anmelden</a><br><br>
+    {% endif %}
+
+    {% for link in menu %}
+      <a href='{{ link }}'>{{ link }}</a><br>
+    {% endfor %}
+
+    {% if email != "0" %}
+      <a href = '/seite_d'>seite_d (nur mit Anmeldung)</a><br>
+    {% endif %}
+  </body>
+</html>
