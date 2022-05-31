@@ -17,70 +17,88 @@ cursor.execute(sql)
 connection.commit()
 
 # -- document
-sql = "INSERT INTO documents(id_User, name, path, datum) VALUES(1, 'firstDocument', 'path1', '1092941466')"
+sql = "INSERT INTO documents(id_User, name, path, datum, tags_id) VALUES(1, 'firstDocument', 'path1', '1092941466', 1010)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO documents(id_User, name, path, datum) VALUES(3, 'secondDocument', 'path2', '1092941466')"
+sql = "INSERT INTO documents(id_User, name, path, datum, tags_id) VALUES(3, 'secondDocument', 'path2', '1092941466', 101010)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO documents(id_User, name, path, datum) VALUES(1, 'thirdDocument', 'path3', '1092941466')"
+sql = "INSERT INTO documents(id_User, name, path, datum, tags_id) VALUES(1, 'thirdDocument', 'path3', '1092941466', 1112)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO documents(id_User, name, path, datum) VALUES(2, 'fourthDocument', 'path4', '1092941466')"
+sql = "INSERT INTO documents(id_User, name, path, datum, tags_id) VALUES(2, 'fourthDocument', 'path4', '1092941466', 1211)"
 cursor.execute(sql)
 connection.commit()
 
 # -- tags
-sql = "INSERT INTO tags(name) VALUES('Chemie')"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(10, 'Chemie', 0)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name) VALUES('Informatik')"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(11, 'Informatik', 0)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name) VALUES('Deutsch')"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(12, 'Deutsch', 0)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, id_parent) VALUES('gym1', 1)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1010, 'gym1', 10)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, id_parent) VALUES('gym2', 1)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1011, 'gym2', 10)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags(name, id_parent) VALUES('Juchler', 2)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1012, 'gym3', 10)"
 cursor.execute(sql)
 connection.commit()
 
-
-# -- tags_Document
-sql = "INSERT INTO tags_Documents(id_Document, id_Tag) VALUES(1, 1)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1013, 'gym4', 10)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags_Documents(id_Document, id_Tag) VALUES(1, 3)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1110, 'gym1', 11)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags_Documents(id_Document, id_Tag) VALUES(1, 4)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1111, 'gym2', 11)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags_Documents(id_Document, id_Tag) VALUES(2, 2)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1210, 'gym1', 12)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags_Documents(id_Document, id_Tag) VALUES(3, 2)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1211, 'gym2', 12)"
 cursor.execute(sql)
 connection.commit()
 
-sql = "INSERT INTO tags_Documents(id_Document, id_Tag) VALUES(4, 1)"
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1212, 'gym3', 12)"
+cursor.execute(sql)
+connection.commit()
+
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(1213, 'gym4', 12)"
+cursor.execute(sql)
+connection.commit()
+
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(101010, 'Juchler', 1010)"
+cursor.execute(sql)
+connection.commit()
+
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(101110, 'Juchler', 1011)"
+cursor.execute(sql)
+connection.commit()
+
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(101210, 'Juchler', 1012)"
+cursor.execute(sql)
+connection.commit()
+
+sql = "INSERT INTO tags(id, name, parent_id) VALUES(101310, 'Juchler', 1013)"
 cursor.execute(sql)
 connection.commit()
 
