@@ -14,5 +14,3 @@ def tags(parent_id):
         tags.append(list(dsatz))
     con.close()
     return tags
-
-print(tags(int(input())))
