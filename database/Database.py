@@ -19,7 +19,7 @@ sql = "CREATE TABLE documents(" \
       "name TEXT NOT NULL, " \
       "path TEXT NOT NULL UNIQUE, " \
       "datum INTEGER NOT NULL, " \
-      "tags_id INTEGER)"
+      "id_Tags INTEGER)"
 cur.execute(sql)
 
 sql = "CREATE TABLE likes(" \
@@ -32,7 +32,7 @@ cur.execute(sql)
 sql = "CREATE TABLE tags(" \
       "id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, " \
       "name TEXT NOT NULL, " \
-      "parent_id INTEGER)"
+      "id_Parent INTEGER)"
 cur.execute(sql)
 
 sql = "CREATE TABLE users(" \
