@@ -5,10 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>V1</title>
-<link href="css/GymBoard.css" rel="stylesheet" type="text/css">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/GymBoard.css') }}">
 </head>
 <body>
-	
+
 <div class="container">
   <header>
     <div class="primary_header">
@@ -27,7 +27,7 @@
     <div class="root" role="list">
         <div class="Deutsch">
             <ul>
-            {%  %}
+            {% if 1==2 %} {% endif %}
                 <span></span>
             </ul>
             <a>
@@ -38,7 +38,7 @@
         </div>
      </div>
  </article>
-    <aside class="right_article"> 
+    <aside class="right_article">
         <div> directiordxf
         </div>
         <div>
@@ -49,7 +49,7 @@
                 </span>
             </div>
         </div>
-        
+
     </aside>
   </section>
   <div class="row">
@@ -74,9 +74,9 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
     </div>
   </div>
-  
+
   <section></section>
-  
+
   <div class="row blockDisplay"></div>
   <footer class="secondary_header footer">
     <div class="copyright">&copy;2022 - <strong>gymboard</strong></div>
