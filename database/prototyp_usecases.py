@@ -19,7 +19,7 @@ def documents_light(id_Tags):
     con = connection()
     cur = con.cursor()
     documents = []
-    cur.execute("SELECT id, name FROM documents WHERE id_Tags = %d;" % (id_Tags))
+    cur.execute("SELECT documents.id, documents.name, FROM documents WHERE id_Tags = %d;" % (id_Tags)) ### count likes!!
     for dsatz in cur:
         documents.append(list(dsatz))
     con.close()
@@ -34,3 +34,5 @@ def documents(id_Tags):
         documents.append(list(dsatz))
     con.close()
     return documents
+
+print(tags(int(input())))
