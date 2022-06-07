@@ -19,11 +19,15 @@ def documents_light(id_Tags):
     con = connection()
     cur = con.cursor()
     documents = []
-    cur.execute("SELECT documents.id, documents.name, FROM documents WHERE id_Tags = %d;" % (id_Tags)) ### count likes!!
+    cur.execute("SELECT documents.id, documents.name FROM documents WHERE id_Tags = %d;" % (id_Tags))
     for dsatz in cur:
         documents.append(list(dsatz))
+    for document in documents:
+        cur.execute("SELECT COUNT(likes.id) FROM likes WHERE likes.id_Document = %d;" % (document[0]))
+        for dsatz in cur:
+            document.append(dsatz[0])
     con.close()
-    return documents
+    return documents # [documents.id, documents.name, COUNT(likes)]
 
 def documents(id_Tags):
     con = connection()
@@ -32,7 +36,21 @@ def documents(id_Tags):
     cur.execute("SELECT documents.*, users.nickName FROM documents JOIN users ON documents.id_User=users.id WHERE id_Tags = %d;" % (id_Tags))
     for dsatz in cur:
         documents.append(list(dsatz))
+    for document in documents:
+        cur.execute("SELECT COUNT(likes.id) FROM likes WHERE likes.id_Document = %d;" % (document[0]))
+        for dsatz in cur:
+            document.append(dsatz[0])
     con.close()
-    return documents
+    return documents #[documents.id, documents.id_Users, documents.name, documents.path, documents.datum, documents.id_Tags, users.nickName, COUNT(likes)]
 
-print(tags(int(input())))
+def comments(id_Document):
+    con = connection()
+    cur = con.cursor()
+    comments = []
+    cur.execute("SELECT comments.*, users.nickName FROM comments JOIN users ON users.id = comments.id_User WHERE comments.id_Document = %d AND comments.id_Comment IS NULL" % (id_Document))
+    for dsatz in cur:
+        comments.append(list(dsatz))
+    con.close()
+    return comments #[comments.id, comments.id_Comment, comments.id_Document, comments.id_User, comments.comment, comments.datum, users.nickName ]
+
+print(comments(3))
