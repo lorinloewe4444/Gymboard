@@ -23,7 +23,7 @@ def documents_light(id_Tags):
     for dsatz in cur:
         documents.append(list(dsatz))
     for document in documents:
-        cur.execute("SELECT COUNT(likes.id) FROM likes WHERE likes.id_Document = %d;" % (id_Tags))
+        cur.execute("SELECT COUNT(likes.id) FROM likes WHERE likes.id_Document = %d;" % (document[0]))
         for dsatz in cur:
             document.append(dsatz[0])
     con.close()
@@ -37,10 +37,10 @@ def documents(id_Tags):
     for dsatz in cur:
         documents.append(list(dsatz))
     for document in documents:
-        cur.execute("SELECT COUNT(likes.id) FROM likes WHERE likes.id_Document = %d;" % (id_Tags))
+        cur.execute("SELECT COUNT(likes.id) FROM likes WHERE likes.id_Document = %d;" % (document[0]))
         for dsatz in cur:
             document.append(dsatz[0])
     con.close()
-    return documents
+    return documents #[documents.id, documents.id_Users, documents.name, documents.path, documents.datum, documents.id_Tags, users.name, COUNT(likes)]
 
-print(documents(101010))
+print(documents_light(1112))
