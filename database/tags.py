@@ -39,4 +39,6 @@ alleFaecher = []
 for fach in faecher:
     exec("alleFaecher.append(%s)" % (fach))
 
-print(alleFaecher)
+#print(alleFaecher)
+for i in faecher:
+    print("<li>"+i+"</li>")
