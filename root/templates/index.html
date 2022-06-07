@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>V1</title>
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/GymBoard.css') }}">
+<script src="{{url_for('static', filename='js/main.js')}}" defer></script>
 </head>
 <body>
 
@@ -26,29 +27,8 @@
 
  <article class="left_article">
     <div class="root" role="list">
-        <ul>
-          <li>Biologie</li>
-          <li>BG</li>
-          <li>Chemie</li>
-          <li>Chinastudien</li>
-          <li>Deutsch</li>
-          <li>Englisch</li>
-          <li>WR</li>
-          <li>Französisch</li>
-          <li>Geschichte</li>
-          <li>Geografie</li>
-          <li>Griechisch</li>
-          <li>Italienisch</li>
-          <li>Informatik</li>
-          <li>Latein</li>
-          <li>Mathematik</li>
-          <li>Musik</li>
-          <li>Physik</li>
-          <li>PAM</li>
-          <li>PPP</li>
-          <li style="background-color:gray;">Russisch</li>
-          <li>Spanisch</li>
-          <li>Sport</li>
+        <ul id="listSubjects">
+
         </ul>
 
      </div>
@@ -56,29 +36,7 @@
 
     <aside class="right_article">
         <div class="Lvl1">
-          <ul>
-            <li>Biologie</li>
-            <li>BG</li>
-            <li>Chemie</li>
-            <li>Chinastudien</li>
-            <li>Deutsch</li>
-            <li>Englisch</li>
-            <li>WR</li>
-            <li>Französisch</li>
-            <li>Geschichte</li>
-            <li>Geografie</li>
-            <li>Griechisch</li>
-            <li>Italienisch</li>
-            <li>Informatik</li>
-            <li>Latein</li>
-            <li>Mathematik</li>
-            <li>Musik</li>
-            <li>Physik</li>
-            <li>PAM</li>
-            <li>PPP</li>
-            <li style="background-color:green;">Russisch</li>
-            <li>Spanisch</li>
-            <li>Sport</li>
+          <ul id="listLvl1">
           </ul>
         </div>
 
