@@ -41,6 +41,16 @@ def documents(id_Tags):
         for dsatz in cur:
             document.append(dsatz[0])
     con.close()
-    return documents #[documents.id, documents.id_Users, documents.name, documents.path, documents.datum, documents.id_Tags, users.name, COUNT(likes)]
+    return documents #[documents.id, documents.id_Users, documents.name, documents.path, documents.datum, documents.id_Tags, users.nickName, COUNT(likes)]
 
-print(documents_light(1112))
+def comments(id_Document):
+    con = connection()
+    cur = con.cursor()
+    comments = []
+    cur.execute("SELECT comments.*, users.nickName FROM comments JOIN users ON users.id = comments.id_User WHERE comments.id_Document = %d AND comments.id_Comment IS NULL" % (id_Document))
+    for dsatz in cur:
+        comments.append(list(dsatz))
+    con.close()
+    return comments #[comments.id, comments.id_Comment, comments.id_Document, comments.id_User, comments.comment, comments.datum, users.nickName ]
+
+print(comments(3))
