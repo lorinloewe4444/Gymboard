@@ -19,11 +19,15 @@ def documents_light(id_Tags):
     con = connection()
     cur = con.cursor()
     documents = []
-    cur.execute("SELECT documents.id, documents.name, FROM documents WHERE id_Tags = %d;" % (id_Tags)) ### count likes!!
+    cur.execute("SELECT documents.id, documents.name FROM documents WHERE id_Tags = %d;" % (id_Tags))
     for dsatz in cur:
         documents.append(list(dsatz))
+    for document in documents:
+        cur.execute("SELECT COUNT(likes.id) FROM likes WHERE likes.id_Document = %d;" % (id_Tags))
+        for dsatz in cur:
+            document.append(dsatz[0])
     con.close()
-    return documents
+    return documents # [documents.id, documents.name, COUNT(likes)]
 
 def documents(id_Tags):
     con = connection()
@@ -32,7 +36,11 @@ def documents(id_Tags):
     cur.execute("SELECT documents.*, users.nickName FROM documents JOIN users ON documents.id_User=users.id WHERE id_Tags = %d;" % (id_Tags))
     for dsatz in cur:
         documents.append(list(dsatz))
+    for document in documents:
+        cur.execute("SELECT COUNT(likes.id) FROM likes WHERE likes.id_Document = %d;" % (id_Tags))
+        for dsatz in cur:
+            document.append(dsatz[0])
     con.close()
     return documents
 
-print(tags(int(input())))
+print(documents(101010))
