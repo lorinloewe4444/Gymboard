@@ -1,4 +1,5 @@
-from flask import Flask, redirect, jsonify, request, url_for, render_template
+from flask import Flask, redirect, url_for,jsonify, request, render_template
+from prototyp_usecases import *
 
 app = Flask(__name__)
 

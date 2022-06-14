@@ -13,7 +13,7 @@ def tags(id_Parent):
     for dsatz in cur:
         tags.append(list(dsatz))
     con.close()
-    return tags
+    return tags # [tags.id, tags.name]
 
 def documents_light(id_Tags):
     con = connection()
@@ -63,4 +63,20 @@ def comments_rec(id_Comment):
     con.close()
     return comments #[comments.id, comments.id_Comment, comments.id_Document, comments.id_User, comments.comment, comments.datum, users.nickName]
 
-print(comments(3))
+
+def tags_docs(id_Parent):
+    con = connection()
+    cur = con.cursor()
+    tags = []
+    cur.execute("SELECT id, name FROM tags WHERE id_Parent = %d;" % (id_Parent))
+    for dsatz in cur:
+        tags.append(list(dsatz))
+    documents = []
+    cur.execute("SELECT id, name, datum FROM documents WHERE id_Tags = %d;" % (id_Parent))
+    for dsatz in cur:
+        documents.append(list(dsatz))
+    con.close()
+    return [tags, documents] # [[tags.id, tags.name], [documents.id, documents.name, documents.datum]]
+
+if __name__ == "__main__":
+    print(tags_docs(1010))
