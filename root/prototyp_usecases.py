@@ -74,7 +74,9 @@ def tags_docs(id_Parent):
     documents = []
     cur.execute("SELECT id, name, datum FROM documents WHERE id_Tags = %d;" % (id_Parent))
     for dsatz in cur:
-        documents.append(list(dsatz))
+        dsatz = list(dsatz)
+        dsatz[-1] = datetime.fromtimestamp(dsatz[-1]).strftime('%Y/%m/%d')
+        documents.append(dsatz)
     con.close()
     return [tags, documents] # [[tags.id, tags.name], [documents.id, documents.name, documents.datum]]
 
