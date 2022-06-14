@@ -51,6 +51,16 @@ def comments(id_Document):
     for dsatz in cur:
         comments.append(list(dsatz))
     con.close()
-    return comments #[comments.id, comments.id_Comment, comments.id_Document, comments.id_User, comments.comment, comments.datum, users.nickName ]
+    return comments #[comments.id, comments.id_Comment, comments.id_Document, comments.id_User, comments.comment, comments.datum, users.nickName]
+
+def comments_rec(id_Comment):
+    con = connection()
+    cur = con.cursor()
+    comments = []
+    cur.execute("SELECT comments.*, users.nickName FROM comments JOIN users ON users.id = comments.id_User WHERE comments.id_Document IS NULL AND comments.id_Comment =" % (id_Comment))
+    for dsatz in cur:
+        comments.append(list(dsatz))
+    con.close()
+    return comments #[comments.id, comments.id_Comment, comments.id_Document, comments.id_User, comments.comment, comments.datum, users.nickName]
 
 print(comments(3))
