@@ -8,17 +8,18 @@ def index():
    return render_template("index.html")
 
 
-@app.route('/test<int:id>', methods=['GET', 'POST'])
+@app.route('/test<int:id>', methods=['GET'])
 def testfn(id):
-    # GET request
     if request.method == 'GET':
         message = {'greeting':'Hello from Flask!'}
-        print(id)
-        return jsonify(message)  # serialize and use JSON headers
-    # POST request
-    if request.method == 'POST':
-        print(request.get_json())  # parse as JSON
-        return 'Sucesss', 200
+        children = tags_docs(id)
+        print(children)
+        print()
+        print()
+        print(jsonify(children))
+        return jsonify(children)  # serialize and use JSON headers
+    else:
+        return jsonify(["Problem bei home.py testfn"])
 
 
 if __name__ == "__main__":

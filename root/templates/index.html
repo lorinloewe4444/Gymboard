@@ -9,13 +9,22 @@
 <script src="{{url_for('static', filename='js/main.js')}}" defer></script>
 
 <script>
-fetch('/test2')
+/* Alter Syntax, kann gelöscht werden, wenn das andere klapt
+var currentChildren = []
+var lastClickedId = 0;
+
+path = 'test' + lastClickedId
+
+fetch('/test3') // copied from: https://towardsdatascience.com/talking-to-python-from-javascript-flask-and-the-fetch-api-e0ef3573c451
       .then(function (response) {
           return response.json();
       }).then(function (text) {
           console.log('GET response:');
-          console.log(text.greeting);
-      });</script>
+          console.log(text);
+          currentChildren = text;
+      });
+*/
+</script>
 
 </head>
 <body>
@@ -46,7 +55,7 @@ fetch('/test2')
 
     <aside class="right_article">
         <div class="Lvl1">
-          <ul id="listLvl1">
+          <ul id="subList">
           </ul>
         </div>
 
