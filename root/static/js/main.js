@@ -8,27 +8,44 @@ const sub = [['Einsprachig', 'Immersion', 'EF', 'GF', 'SF'], ['GF', 'SF', 'EF'],
 
 
 async function getAndLoadChildren (parentId) {
+  console.log("parentId is:");
+  console.log(parentId);
   try {
     const root = 'test' + parentId;
     const response = await fetch(root);
     const data = await response.json();
     console.log(data);
+    console.log("HEY");
     fillSubListNew(data);
+    console.log("BYE");
   } catch (e) {
     console.log("Async func catch");
   }
 }
 
+async function loadMainSubs (parentId) {
+  try {
+    const root = 'test' + 0;
+    const response = await fetch(root);
+    const data = await response.json();
+    var ul = document.getElementById("listSubjects");
+    console.log(data);
+    for (subjectIndex in data[0]){
+      subjectContent = data[0][subjectIndex];
+      var li = document.createElement("li");
+      li.appendChild(document.createTextNode(subjectContent[1]));
+      li.setAttribute("id", "subject:"+subjectContent[0]);
+      li.setAttribute("class", "subject");
+      ul.appendChild(li);
 
+    }
+    var subjects = document.getElementsByClassName("subject");
+    for (var i = 0; i < subjects.length; i++) {
+        subjects[i].addEventListener('click', mainSubClicked, false);
+    }
 
-function loadMainSubs() {
-  var ul = document.getElementById("listSubjects");
-  for (subjectIndex in faecher){
-  var li = document.createElement("li");
-  li.appendChild(document.createTextNode(faecher[subjectIndex]));
-  li.setAttribute("id", "subject:"+subjectIndex);
-  li.setAttribute("class", "subject");
-  ul.appendChild(li);
+  } catch (e) {
+    console.log("Fail in LoadMainSubs");
   }
 }
 
@@ -38,30 +55,48 @@ loadMainSubs();
 
 function fillSubListNew(content){
   var ul = document.getElementById("subList");
-  ul.innerHTML = ''//clears the ul
-  console.log("of content")
-  console.log(content)
+  ul.innerHTML = '';//clears the ul
+  console.log("of content");
+  console.log(content);
 
-  for (i in content[0]){ // für Ordner/Knoten
+  for (i in content[0]){ // für Ordner/Knoten // hat problem
     const child = content[0][i];
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(child[1]));
+    li.style.backgroundColor = "yellow";// provisorische line
     li.setAttribute("id", child[0]);
     li.setAttribute("class", "node");
     ul.appendChild(li);
   }
+
   for (i in content[1]){ // für Ordner/Knoten
     const child = content[1][i];
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(child[1]));
+    li.style.backgroundColor = "red";// provisorische line
     li.setAttribute("id", child[0]);
     li.setAttribute("class", "file");
     ul.appendChild(li);
   }
+  addEventToSubs();
+}
+
+function addEventToSubs(){
+  const nodes = document.getElementsByClassName("node");
+  for (var i = 0; i < nodes.length; i++) {
+    nodes[i].addEventListener('click', nodeClicked, false);
+  }
+  const files = document.getElementsByClassName("file");
+  for (var i = 0; i < files.length; i++) {
+    nodes[i].addEventListener('click', fileClicked, false);
+  }
+
+
+
 
 }
 
-//inaktiv
+/* Veraltet
 function fillSubList(subjectIndex){
   const content = sub[subjectIndex];
   var ul = document.getElementById("subList");
@@ -75,17 +110,25 @@ function fillSubList(subjectIndex){
     ul.appendChild(li);
   }
 }
+*/
+
+var fileClicked = function (){
+  console.log("file was clicked");
+}
 
 
-var subjects = document.getElementsByClassName("subject");
+var nodeClicked = function(){
+  console.log("node clicked");
+  var id = this.getAttribute("id");
+  const nodeIndex = id.split(":")[1];
+  getAndLoadChildren(nodeIndex);
+}
 
-
-var applyClickSubjects = function() {
+var mainSubClicked = function() {
     var id = this.getAttribute("id");
     const subjectIndex = id.split(":")[1];
-    getAndLoadChildren(10); // 10 muss durch id ersetzt werden, dafür muss aber zuerst die Datenbank ergäntzt werden.
+    console.log("Index is is");
+    console.log(subjectIndex);
+    console.log(id);
+    getAndLoadChildren(subjectIndex);
 };
-
-for (var i = 0; i < subjects.length; i++) {
-    subjects[i].addEventListener('click', applyClickSubjects, false);
-}
