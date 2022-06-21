@@ -119,12 +119,16 @@ var fileClicked = function (){
 
 var nodeClicked = function(){
   console.log("node clicked");
+  console.log(this);
   var id = this.getAttribute("id");
   const nodeIndex = id.split(":")[1];
+  console.log(nodeIndex);
   getAndLoadChildren(nodeIndex);
 }
 
 var mainSubClicked = function() {
+    console.log("This: ")
+    console.log(this);
     var id = this.getAttribute("id");
     const subjectIndex = id.split(":")[1];
     console.log("Index is is");
