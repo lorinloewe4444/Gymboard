@@ -1,23 +1,14 @@
 //alert("this is from js");
 
-const faecher =['Biologie', 'BG', 'Chemie', 'Chinastudien', 'Deutsch', 'Englisch', 'WR',
-'Französisch', 'Geschichte', 'Geografie', 'Griechisch', 'Italienisch', 'Informatik',
-'Latein', 'Mathematik', 'Musik', 'Physik', 'PAM', 'PPP', 'Russisch', 'Spanisch', 'Sport'];
 
-const sub = [['Einsprachig', 'Immersion', 'EF', 'GF', 'SF'], ['GF', 'SF', 'EF'], ['Einsprachig', 'Immersion', 'GF', 'SF'], [], ['Gym1', 'Gym2', 'Gym3', 'Gym4'], ['EF', 'GF', 'SF'], ['EF', 'EWR', 'SF'], [], ['Einsprachig', 'Immersion', 'EF'], ['Gym1', 'Gym2', 'Gym4', 'EF'], [], ['GF', 'SF', 'fakultativ'], ['Gym1', 'Gym2', 'fakultativ(archiv)', 'EF'], [], ['Gym1', 'Gym2', 'Gym3', 'Gym4'], ['fak', 'Gym1', 'Gym2', 'Gym3', 'Gym4', 'EF'], ['Gym2', 'Gym3', 'Gym4'], ['AM', 'Physik'], ['Philosophie', 'Psychologie', 'Pädagogik'], [], [], ['EF']];
-
+var nodePath = []
 
 async function getAndLoadChildren (parentId) {
-  console.log("parentId is:");
-  console.log(parentId);
   try {
     const root = 'test' + parentId;
     const response = await fetch(root);
     const data = await response.json();
-    console.log(data);
-    console.log("HEY");
     fillSubListNew(data);
-    console.log("BYE");
   } catch (e) {
     console.log("Async func catch");
   }
@@ -25,11 +16,10 @@ async function getAndLoadChildren (parentId) {
 
 async function loadMainSubs (parentId) {
   try {
-    const root = 'test' + 0;
+    const root = 'test0';
     const response = await fetch(root);
     const data = await response.json();
     var ul = document.getElementById("listSubjects");
-    console.log(data);
     for (subjectIndex in data[0]){
       subjectContent = data[0][subjectIndex];
       var li = document.createElement("li");
@@ -56,25 +46,22 @@ loadMainSubs();
 function fillSubListNew(content){
   var ul = document.getElementById("subList");
   ul.innerHTML = '';//clears the ul
-  console.log("of content");
-  console.log(content);
-
   for (i in content[0]){ // für Ordner/Knoten // hat problem
     const child = content[0][i];
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(child[1]));
-    li.style.backgroundColor = "yellow";// provisorische line
-    li.setAttribute("id", child[0]);
+    li.style.backgroundColor = "blue";// provisorische line
+    li.setAttribute("id", "node:" + child[0]);
     li.setAttribute("class", "node");
     ul.appendChild(li);
   }
 
-  for (i in content[1]){ // für Ordner/Knoten
+  for (i in content[1]){ // für Files
     const child = content[1][i];
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(child[1]));
     li.style.backgroundColor = "red";// provisorische line
-    li.setAttribute("id", child[0]);
+    li.setAttribute("id", "file:" + child[0]);
     li.setAttribute("class", "file");
     ul.appendChild(li);
   }
@@ -88,12 +75,8 @@ function addEventToSubs(){
   }
   const files = document.getElementsByClassName("file");
   for (var i = 0; i < files.length; i++) {
-    nodes[i].addEventListener('click', fileClicked, false);
+    files[i].addEventListener('click', fileClicked, false);
   }
-
-
-
-
 }
 
 /* Veraltet
@@ -113,26 +96,22 @@ function fillSubList(subjectIndex){
 */
 
 var fileClicked = function (){
-  console.log("file was clicked");
+  console.log("file was clicked, id is:");
+  console.log(this.getAttribute("id"));
 }
 
 
 var nodeClicked = function(){
-  console.log("node clicked");
-  console.log(this);
   var id = this.getAttribute("id");
   const nodeIndex = id.split(":")[1];
-  console.log(nodeIndex);
+  nodePath.push(nodeIndex);
+  console.log(nodePath);
   getAndLoadChildren(nodeIndex);
 }
 
 var mainSubClicked = function() {
-    console.log("This: ")
-    console.log(this);
     var id = this.getAttribute("id");
     const subjectIndex = id.split(":")[1];
-    console.log("Index is is");
-    console.log(subjectIndex);
-    console.log(id);
+    nodePath = [subjectIndex];
     getAndLoadChildren(subjectIndex);
 };
