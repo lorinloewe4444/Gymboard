@@ -3,16 +3,7 @@
 
 var nodePath = []
 
-async function getAndLoadChildren (parentId) {
-  try {
-    const root = 'test' + parentId;
-    const response = await fetch(root);
-    const data = await response.json();
-    fillSubListNew(data);
-  } catch (e) {
-    console.log("Async func catch");
-  }
-}
+
 
 async function loadMainSubs (parentId) {
   try {
@@ -38,10 +29,20 @@ async function loadMainSubs (parentId) {
     console.log("Fail in LoadMainSubs");
   }
 }
-
 loadMainSubs();
 
 
+async function getAndLoadChildren (parentId) {
+  try {
+    const root = 'test' + parentId;
+    const response = await fetch(root);
+    const data = await response.json();
+    fillSubListNew(data);
+    createPath();
+  } catch (e) {
+    console.log("Async func catch");
+  }
+}
 
 function fillSubListNew(content){
   var ul = document.getElementById("subList");
@@ -79,32 +80,50 @@ function addEventToSubs(){
   }
 }
 
-/* Veraltet
-function fillSubList(subjectIndex){
-  const content = sub[subjectIndex];
-  var ul = document.getElementById("subList");
-  ul.innerHTML = ''//clears the ul
-
-  for (subIndex in content[0]){
+function createPath(){
+  var ul = document.getElementById("nodePath");
+  ul.innerHTML = '';
+  for (i in nodePath){ // für Files
+    const content = nodePath[i];
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(sub[subjectIndex][subIndex]));
-    li.setAttribute("id", "SubOne:"+subIndex);
-    li.setAttribute("class", "subOne");
+    li.appendChild(document.createTextNode(content[1]));
+    li.setAttribute("id", "pathNode:" + content[0]);
+    li.setAttribute("class", "pathNode");
     ul.appendChild(li);
   }
+  addEventToPath();
 }
-*/
+
+function addEventToPath(){
+  const pathNodes = document.getElementById("nodePath").children;
+  for (var i = 0; i < pathNodes.length; i++) {
+    pathNodes[i].addEventListener('click', pathNodeClicked, false);
+  }
+}
+
+var pathNodeClicked = function (){
+  const id = this.getAttribute("id");
+  const index = id.split(":")[1];
+  getAndLoadChildren(index);
+    // removes old Nodes
+  const values = nodePath.map(object => object[0])
+  const indexInArray = values.indexOf(index);
+  while (nodePath.length-1 > indexInArray){
+    nodePath.pop()
+  }
+}
 
 var fileClicked = function (){
   console.log("file was clicked, id is:");
   console.log(this.getAttribute("id"));
+
 }
 
 
 var nodeClicked = function(){
   var id = this.getAttribute("id");
   const nodeIndex = id.split(":")[1];
-  nodePath.push(nodeIndex);
+  nodePath.push([nodeIndex, this.innerHTML]);
   console.log(nodePath);
   getAndLoadChildren(nodeIndex);
 }
@@ -112,6 +131,6 @@ var nodeClicked = function(){
 var mainSubClicked = function() {
     var id = this.getAttribute("id");
     const subjectIndex = id.split(":")[1];
-    nodePath = [subjectIndex];
+    nodePath = [[subjectIndex, this.innerHTML]];
     getAndLoadChildren(subjectIndex);
 };

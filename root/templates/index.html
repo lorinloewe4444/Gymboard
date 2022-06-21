@@ -8,6 +8,25 @@
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/GymBoard.css') }}">
 <script src="{{url_for('static', filename='js/main.js')}}" defer></script>
 <link href="../static/styles/GymBoard.css" rel="stylesheet" type="text/css">
+
+
+<!--@Jorik, kannst du gerne ins CSS kopieren
+Ist mir etwas zu unübersichtlich um es selbst hinzuzufügen
+kannst du gerne überarbeiten, Design ist nicht so meins
+-->
+<style>
+  #nodePath {
+    padding-left: 0px;
+  }
+
+  #nodePath > li {
+    background-color: green;
+    display: inline-block;
+    padding: 10px 20px;
+  }
+</style>
+
+
 </head>
 <body>
 
@@ -37,12 +56,12 @@
     <aside class="right_article">
         <div class="Lvl1">
           <p>Pfad</p>
-          <ul id="path">
+          <ul id="nodePath">
           <!--
           horizontal list
           -->
           </ul>
-
+          <p>Elemente</p>
           <ul id="subList">
 
           </ul>
